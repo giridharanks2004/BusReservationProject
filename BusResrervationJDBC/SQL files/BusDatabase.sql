@@ -23,8 +23,16 @@ create table booking(
 );
 
 alter table booking add status varchar(30) default "to be updated";
+alter table booking add userid varchar(30);
 alter table booking drop status;
 select * from booking;
 truncate table booking;
 
 select * from booking;
+
+create table UserAuth(
+	userid varchar(30),
+    passcode varchar(30)
+);
+select * from UserAuth;
+truncate table UserAuth;
