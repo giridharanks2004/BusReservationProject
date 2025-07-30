@@ -1,9 +1,26 @@
+import java.util.Scanner;
 public class App {
-    public static void main(String[] args) throws Exception {
-<<<<<<< HEAD
-        System.out.println("enter input");
-=======
-        System.out.println("hello");
->>>>>>> 2024d00d7e3a98394a6cba4ca9ec916bd9a1c1e5
+    public static void main(String[] args) throws Exception{     
+        int UserOption = 1;
+        Scanner inp = new Scanner(System.in);
+        while(UserOption==1){
+            BusDAO busdetails = new BusDAO();
+            busdetails.displayBusinfo();
+            System.out.println("Enter 1 to book and 0 to exit:");
+            UserOption = inp.nextInt();
+            if(UserOption==1){
+                Booking bookData = new Booking();
+                if(bookData.isAvailable()){  
+                    
+                    bookData.confirmBooking();
+                    System.out.println(" ");
+                    System.out.println(" ");
+                }
+                else{
+                    System.out.print(" ");
+                    System.out.println("bus is not available please select a diffrent number or date to proceed");
+                }
+            }
+        }
     }
 }
