@@ -6,20 +6,27 @@ public class App {
         while(UserOption==1){
             BusDAO busdetails = new BusDAO();
             busdetails.displayBusinfo();
+            Booking Userbook;
             System.out.println("Enter 1 to book and 0 to exit:");
             UserOption = inp.nextInt();
             if(UserOption==1){
-                Booking bookData = new Booking();
-                if(bookData.isAvailable()){  
-                    
-                    bookData.confirmBooking();
-                    System.out.println(" ");
-                    System.out.println(" ");
+                Passenger PassengerAuth = new Passenger();
+                int bid = 0;
+                if(PassengerAuth.checkUser()){
+                    Booking bookData = new Booking();
+                    if(bookData.isAvailable()){  
+                        bookData.confirmBooking();
+                        System.out.println(" ");
+                        System.out.println(" ");
+                        bid = bookData.busNo;
+                    }
+                    else{
+                        System.out.print(" ");
+                        System.out.println("bus is not available please select a diffrent number or date to proceed");
+                    }
                 }
-                else{
-                    System.out.print(" ");
-                    System.out.println("bus is not available please select a diffrent number or date to proceed");
-                }
+                busdetails.displayBusinfo(bid);
+                break;
             }
         }
     }
