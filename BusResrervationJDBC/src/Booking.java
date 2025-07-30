@@ -10,7 +10,7 @@ public class Booking {
         this.Passenger_name = inp.nextLine();
         System.out.println("enter bus no:");
         this.busNo = inp.nextInt();
-        System.out.println("enter date (dd-mm-yyyy):");
+        System.out.println("enter date (dd-mm-yyy):");
         String bdate = inp.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         try {
@@ -21,11 +21,29 @@ public class Booking {
     }
     boolean isAvailable() throws Exception{
         BusDAO bus = new BusDAO();
-        int capVal=bus.getCapacity(busNo);
-        int count=0;
+        BookingDAO book = new BookingDAO();
+        int capVal = bus.getCapacity(busNo);
+        int count =  book.getCount(busNo,date);  
         if(count<capVal){
             return true;
         }
         return false;
+    }
+    void confirmBooking() throws Exception{
+        BookingDAO book = new BookingDAO();
+        String ConfirmationStatus = book.TicketConfirmation(busNo,Passenger_name,date);
+        BusDAO bus = new BusDAO();
+        if(bus.setAvail(busNo,bus.getAvail(busNo)-1)){
+            System.out.println(" ");
+            System.out.println("Booking Status: "+ConfirmationStatus);
+            System.out.println(" ");
+        }
+        else{
+            System.out.println(" ");
+            System.out.println("error please try again");
+            System.out.println(" ");
+        }
+        
+        
     }
 }

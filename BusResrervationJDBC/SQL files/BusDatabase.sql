@@ -22,4 +22,9 @@ create table booking(
     travel_date date
 );
 
+alter table booking add status varchar(30) default "to be updated";
+alter table booking drop status;
+select * from booking;
+truncate table booking;
+
 select * from booking;
