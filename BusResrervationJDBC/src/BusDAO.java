@@ -20,6 +20,29 @@ public class BusDAO {
         con.close();
         System.out.println("------------------------------------------------------------------------------");
     }
+    public void displayBusinfo(int bus_id) throws Exception{
+        if(bus_id == 0){
+            return;
+        }
+        Connection con = DBConnect.getConnection();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("select * from bus where bus_id = "+bus_id);
+        System.out.println(" ");   
+        while (rs.next()){
+            System.out.println("Bus no: "+rs.getInt(1));
+            if(rs.getInt(1)==0){
+                System.out.println("AC: No");
+            }else{
+                System.out.println("AC: Yes");
+            }
+            System.out.println("Capacity: "+rs.getInt(3));
+            System.out.println("Available: "+rs.getInt(4)+"/"+rs.getInt(3)+" ");
+            System.out.println("");
+            
+        }
+        con.close();
+        System.out.println("------------------------------------------------------------------------------");
+    }
     public int getCapacity(int busid) throws Exception{
         Connection con = DBConnect.getConnection();
         PreparedStatement st = con.prepareStatement("select capacity from bus where bus_id = ?");
