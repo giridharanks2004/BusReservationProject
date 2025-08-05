@@ -37,18 +37,18 @@ public class PassengerDAO {
         return false;
     }
     public boolean createUser() throws Exception{
-        boolean auth = true;
         Scanner inp = new Scanner(System.in);
-        String check,uid,pass;
+        String uid,pass;
         System.out.println("enter username:");
         uid = inp.nextLine();
-        while(auth){
-            auth = authUser(uid);
-            if(auth){
+        while(true){
+            if(authUser(uid)){
                 System.out.println("username already taken!");
-                check = inp.nextLine();
+                uid = inp.nextLine();
             }
-            uid = check;
+            else{
+                break;
+            }         
         }
 
         System.out.println("enter password:");
