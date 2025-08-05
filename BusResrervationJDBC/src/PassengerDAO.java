@@ -48,7 +48,7 @@ public class PassengerDAO {
                 System.out.println("username already taken!");
                 check = inp.nextLine();
             }
-            check = uid;
+            uid = check;
         }
 
         System.out.println("enter password:");
