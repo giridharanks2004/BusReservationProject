@@ -7,11 +7,10 @@ public class Passenger {
         Scanner inp = new Scanner(System.in);
         System.out.println("Enter Username:");
         this.Username = inp.nextLine();
-        System.out.println("Enter Password:");
-        this.Password = inp.nextLine();
-    }
-    public boolean checkUser()throws Exception{
         PassengerDAO Pacess = new PassengerDAO();
-        return Pacess.authUser(Username,Password);
+        if(Pacess.authUser(Username,Password)){
+            System.out.println("Enter Password:");
+            this.Password = inp.nextLine();
+        }
     }
 }

@@ -50,7 +50,6 @@ public class PassengerDAO {
                 break;
             }         
         }
-
         System.out.println("enter password:");
         pass = inp.nextLine();
         Connection con = DBConnect.getConnection();
